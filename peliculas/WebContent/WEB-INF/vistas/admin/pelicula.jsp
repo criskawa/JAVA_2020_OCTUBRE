@@ -78,7 +78,7 @@
 						class="form-control ${pelicula.errorFechaEstreno != null ? 'is-invalid' : '' }"
 						id="fecha-estreno" name="fecha-estreno"
 						value="${pelicula.fechaEstreno}">
-					<div class="invalid-feedback">${pelicula.errorFechaEstreno != null ? 'is-invalid' : 'Sólo se admiten fechas de estreno anteriores o iguales a hoy' }</div>
+					<div class="invalid-feedback">${pelicula.errorFechaEstreno != null ? pelicula.errorFechaEstreno : 'Sólo se admiten fechas de estreno anteriores o iguales a hoy' }</div>
 				</div>
 			</div>
 
