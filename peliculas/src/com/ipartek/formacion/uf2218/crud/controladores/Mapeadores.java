@@ -14,7 +14,7 @@ class Mapeadores {
 	static void peliculaAFormulario(HttpServletRequest request, HttpServletResponse response, Pelicula pelicula)
 			throws ServletException, IOException {
 		request.setAttribute("pelicula", pelicula);
-		request.setAttribute("generos", Configuracion.daoGenero.obtenerTodos());
+		request.setAttribute("generos", Configuracion.peliculaLogica.obtenerGeneros());
 
 		if (pelicula != null) {
 			request.setAttribute("subgeneros", pelicula.getGenero().getSubGeneros());
@@ -32,7 +32,7 @@ class Mapeadores {
 		String fechaEstreno = request.getParameter("fecha-estreno");
 
 		Long generoId = Long.parseLong(generoTexto);
-		Genero genero = Configuracion.daoGenero.obtenerPorId(generoId);
+		Genero genero = Configuracion.peliculaLogica.obtenerGeneroPorId(generoId);
 
 		Genero subGenero = null;
 
@@ -40,7 +40,7 @@ class Mapeadores {
 			Long subGeneroId = Long.parseLong(subGeneroTexto);
 
 			if (subGeneroId != 0) {
-				subGenero = Configuracion.daoGenero.obtenerPorId(subGeneroId);
+				subGenero = Configuracion.peliculaLogica.obtenerGeneroPorId(subGeneroId);
 			}
 		}
 

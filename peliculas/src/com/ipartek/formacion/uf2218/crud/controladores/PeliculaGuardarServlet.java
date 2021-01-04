@@ -64,11 +64,11 @@ public class PeliculaGuardarServlet extends HttpServlet {
 		try {
 			if (pelicula.getId() == null) {
 				op = "inserción";
-				Configuracion.dao.insertar(pelicula);
+				Configuracion.peliculaLogica.anadirPelicula(pelicula);
 
 			} else {
 				op = "modificación";
-				Configuracion.dao.modificar(pelicula);
+				Configuracion.peliculaLogica.editarPelicula(pelicula);
 			}
 
 			alertaMensaje = "La " + op + " se ha hecho correctamente";

@@ -28,7 +28,7 @@ public class PeliculaServlet extends HttpServlet {
 		if(sId != null) {
 			Long id = Long.parseLong(sId);
 		
-			pelicula = Configuracion.dao.obtenerPorId(id);
+			pelicula = Configuracion.peliculaLogica.obtenerPorId(id);
 		}
 		
 		Mapeadores.peliculaAFormulario(request, response, pelicula);

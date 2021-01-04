@@ -23,7 +23,7 @@ public class PeliculaBorrarServlet extends HttpServlet {
 		String alertaMensaje, alertaTipo;
 		
 		try {
-			Configuracion.dao.borrar(id);
+			Configuracion.peliculaLogica.borrarPelicula(id);
 			
 			alertaMensaje = "Registro " + id + " borrado correctamente";
 			alertaTipo = "success";
