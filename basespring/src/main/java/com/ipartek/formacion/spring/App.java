@@ -1,16 +1,22 @@
 package com.ipartek.formacion.spring;
 
-public class App {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class App implements CommandLineRunner {
+
+    @Autowired
+    private ProveedorVisualizacion pv;
+
     public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
+    }
 
-        String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-
-        Fabrica fabrica = new Fabrica(path + "configuracion.properties");
-
-        // ProveedorMensajes pm = fabrica.getProveedorMensajes(); // new
-        // ProveedorMensajesConstante();
-        ProveedorVisualizacion pv = fabrica.getProveedorVisualizacion(); // new ProveedorVisualizacionConsola(pm);
-
+    @Override
+    public void run(String... args) throws Exception {
         pv.visualizar();
     }
 }
