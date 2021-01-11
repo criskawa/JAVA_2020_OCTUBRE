@@ -9,5 +9,4 @@ public class SpringformulariosApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringformulariosApplication.class, args);
 	}
-
 }

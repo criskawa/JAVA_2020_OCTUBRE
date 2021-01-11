@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="#" th:action="@{/saludar}" th:object="${saludo}"
+		method="post">
+		<input type="number" th:field="*{id}" />
+		<input type="text" th:field="*{contenido}" />
+		<button>Aceptar</button>
+	</form>
+</body>
+</html>
