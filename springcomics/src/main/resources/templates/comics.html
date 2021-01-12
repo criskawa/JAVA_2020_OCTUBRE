@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Comics</title>
+</head>
+<body>
+
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Título</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="comic: ${comics}">
+				<td th:text="${comic.id}" />
+				<td th:text="${comic.titulo}" />
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
