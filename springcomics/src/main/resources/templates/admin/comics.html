@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" lang="es">
 <head>
 <meta charset="UTF-8">
 <title>Comics</title>
 </head>
 <body>
+	<h1 th:inline="text">Hola [[${#httpServletRequest.remoteUser}]]!</h1>
+	
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Cerrar sesión" />
+	</form>
 
-<h1>ADMINISTRACIÓN</h1>
+	<h1>ADMINISTRACIÓN</h1>
 	<table>
 		<thead>
 			<tr>
