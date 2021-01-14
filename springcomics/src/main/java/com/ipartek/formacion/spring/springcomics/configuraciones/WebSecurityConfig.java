@@ -45,7 +45,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 	  throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource);
+		auth.jdbcAuthentication()
+	      .dataSource(dataSource)
+	      .usersByUsernameQuery("select email,password,1 "
+	        + "from usuarios "
+	        + "where email = ?")
+	      .authoritiesByUsernameQuery("select email,rol "
+	        + "from usuarios "
+	        + "where email = ?");
 	}
 
 	@Bean
@@ -55,6 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 }
 
 /*
+https://www.baeldung.com/spring-security-jdbc-authentication
 https://www.baeldung.com/spring-security-registration-password-encoding-bcrypt
 https://www.browserling.com/tools/bcrypt
 
