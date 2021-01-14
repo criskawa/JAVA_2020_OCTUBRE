@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="es">
+<html th:replace="~{_plantilla :: principal(~{::title}, ~{::section})}" lang="es" xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Comics</title>
+	<title>Comics</title>
 </head>
 <body>
 
-<a href="admin">Ir a administración</a>
+<section>
+	<a href="admin">Ir a administración</a>
 
-<h1>COMICS</h1>
-	<table>
-		<thead>
+	<table class="table table-striped table-bordered table-hover table-sm">
+		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Id</th>
 				<th scope="col">Título</th>
@@ -18,11 +17,11 @@
 		</thead>
 		<tbody>
 			<tr th:each="comic: ${comics}">
-				<td th:text="${comic.id}" />
-				<td th:text="${comic.titulo}" />
+				<td th:text="${comic.id}">1</td>
+				<td th:text="${comic.titulo}">Ejemplo de comic</td>
 			</tr>
 		</tbody>
 	</table>
-
+</section>
 </body>
 </html>
