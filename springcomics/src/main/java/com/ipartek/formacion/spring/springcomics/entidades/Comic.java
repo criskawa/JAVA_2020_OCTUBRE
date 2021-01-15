@@ -7,6 +7,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ public class Comic {
 	@Size(min = 3, max = 150)
 	private String titulo;
 	@PastOrPresent
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaLanzamiento;
 	@Min(1)
 	private Integer	numeroPaginas;

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title></title>
+</head>
+<body>
+	<div class="form-group row" th:fragment="input (id,label,type)">
+		<label th:for="${id}" th:text="${label}"
+			class="col-md-2 col-form-label"></label>
+		<div class="col-md-10">
+			<input th:type="${type}" class="form-control" th:id="${id}"
+				th:field="*{__${id}__}">
+		</div>
+	</div>
+
+	<div class="form-group row" th:fragment="textarea (id,label)">
+		<label th:for="${id}" th:text="${label}"
+			class="col-md-2 col-form-label"></label>
+		<div class="col-md-10">
+			<textarea class="form-control" th:id="${id}" th:field="*{__${id}__}"></textarea>
+		</div>
+	</div>
+
+	<div class="form-group row" th:fragment="button (label)">
+		<div class="offset-md-2 col-md-10">
+			<button th:text="${label}" type="submit" class="btn btn-primary">Aceptar</button>
+		</div>
+	</div>
+</body>
+</html>

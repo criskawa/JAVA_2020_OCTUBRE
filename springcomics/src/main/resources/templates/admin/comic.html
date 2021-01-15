@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla :: principal(~{::title}, ~{::section})}"
+	lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Comics</title>
+</head>
+<body>
+	<section class="col-12">
+
+		<pre th:text="${comic}"></pre>
+
+		<form th:object="${comic}">
+			<div th:replace="_bootstrap::input ('titulo', 'Título', 'text')"></div>
+			<div
+				th:replace="_bootstrap::input ('fechaLanzamiento', 'Fecha lanzamiento', 'date')"></div>
+			<div
+				th:replace="_bootstrap::input ('numeroPaginas', 'Numero de páginas', 'number')">...</div>
+			<div th:replace="_bootstrap::textarea ('resumen', 'Resumen')"></div>
+			<div th:replace="_bootstrap::input ('urlImagen', 'URL imagen', 'url')"></div>
+			<div th:replace="_bootstrap::button ('Aceptar')"></div>
+		</form>
+	</section>
+</body>
+</html>
