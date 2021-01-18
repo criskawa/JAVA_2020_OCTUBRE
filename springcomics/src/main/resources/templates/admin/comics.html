@@ -22,7 +22,8 @@
 					<td th:text="${comic.id}">1</td>
 					<td th:text="${comic.titulo}">Ejemplo de comic</td>
 					<td>
-						<a class="btn btn-primary" th:href="${comic.id}">Editar</a>
+						<a class="btn btn-primary" th:href="@{'/admin/' + ${comic.id}}"
+>Editar</a>
 					</td>
 				</tr>
 			</tbody>
