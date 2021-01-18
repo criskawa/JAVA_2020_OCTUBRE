@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="es">
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
-        <div th:if="${param.error}">
-            Usuario o contraseña incorrecto
-        </div>
-        <div th:if="${param.logout}">
-            Acabas de cerrar sesión
-        </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> Usuario: <input type="text" name="username"/> </label></div>
-            <div><label> Contraseña: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Iniciar sesión"/></div>
-        </form>
-    </body>
+<html th:replace="~{_plantilla :: principal(~{::title}, ~{::section})}"
+	lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Comics</title>
+</head>
+<body>
+	<section class="col-12">
+		<div th:if="${param.error}">Usuario o contraseña incorrecto</div>
+		<div th:if="${param.logout}">Acabas de cerrar sesión</div>
+		<form th:action="@{/login}" method="post">
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label"> Usuario</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="username" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Contraseña</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" name="password" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="offset-sm-2 col-sm-10">
+					<input class="btn btn-primary" type="submit" value="Iniciar sesión" />
+				</div>
+			</div>
+		</form>
+	</section>
+</body>
 </html>

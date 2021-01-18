@@ -6,16 +6,6 @@
 </head>
 <body>
 	<section class="col-12">
-		<h1 th:inline="text">Hola [[${#httpServletRequest.remoteUser}]]!</h1>
-
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Cerrar sesión" />
-		</form>
-
-		<p>
-			Ejemplo de cómo NO funciona<a th:href="@{/logout}">Cerrar sesión</a>
-		</p>
-
 		<h1>ADMINISTRACIÓN</h1>
 		
 
