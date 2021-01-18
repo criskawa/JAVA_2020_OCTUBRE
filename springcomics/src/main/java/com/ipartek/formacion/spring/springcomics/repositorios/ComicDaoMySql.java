@@ -1,5 +1,6 @@
 package com.ipartek.formacion.spring.springcomics.repositorios;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +51,7 @@ public class ComicDaoMySql implements Dao<Comic> {
 		parameters.put("url_imagen", comic.getUrlImagen());
 		parameters.put("fecha_lanzamiento", comic.getFechaLanzamiento());
 	    
-		Long newId = (Long)simpleJdbcInsert.executeAndReturnKey(parameters);
+		Long newId = ((BigInteger)simpleJdbcInsert.executeAndReturnKey(parameters)).longValue();
 	    comic.setId(newId);
 	    
 	    return comic;
@@ -58,7 +59,7 @@ public class ComicDaoMySql implements Dao<Comic> {
 
 	@Override
 	public Comic editar(Comic comic) {
-		jdbcTemplate.update("UPDATE comic SET titulo = ?, resumen = ?, numero_paginas = ?, url_imagen = ?, fecha_lanzamiento = ? WHERE id = ?",
+		jdbcTemplate.update("UPDATE comics SET titulo = ?, resumen = ?, numero_paginas = ?, url_imagen = ?, fecha_lanzamiento = ? WHERE id = ?",
 				new Object[] { comic.getTitulo(), comic.getResumen(), comic.getNumeroPaginas(), comic.getUrlImagen(), comic.getFechaLanzamiento(), comic.getId()});
 		return comic;
 	}

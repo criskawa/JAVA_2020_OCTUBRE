@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ipartek.formacion.spring.springcomics.entidades.Comic;
 import com.ipartek.formacion.spring.springcomics.repositorios.Dao;
 
+import lombok.extern.java.Log;
+
+@Log
 @Controller
 @RequestMapping("/admin")
 public class ComicsAdminController {
@@ -38,12 +41,24 @@ public class ComicsAdminController {
 	}
 	
 	@PostMapping
-	public String comicPost(Model modelo) {
-		Comic comic = new Comic();
-
-		modelo.addAttribute("comic", comic);
-
-		return "admin/comic";
+	public String comicPost(Comic comic) {
+		log.info(comic.toString());
+		
+		if(comic.getId() != null) {
+			dao.editar(comic);
+		} else {
+			dao.insertar(comic);
+		}
+		
+		//return "admin/comic";
+		return "redirect:/admin";
+	}
+	
+	@PostMapping("/borrar")
+	public String comicPostBorrar(Long id) {
+		dao.borrar(id);
+		
+		return "redirect:/admin";
 	}
 	
 }

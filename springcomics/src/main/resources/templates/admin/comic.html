@@ -9,15 +9,16 @@
 
 		<pre th:text="${comic}"></pre>
 
-		<form th:object="${comic}">
-			<div th:replace="_bootstrap::input ('titulo', 'Título', 'text')"></div>
+		<form th:action="@{/admin}" th:object="${comic}" method="post">
+			<div th:replace="_bootstrap::bhidden (id='id')"></div>
+			<div th:replace="_bootstrap::binput (id='titulo', label='Título', type='text')"></div>
 			<div
-				th:replace="_bootstrap::input ('fechaLanzamiento', 'Fecha lanzamiento', 'date')"></div>
+				th:replace="_bootstrap::binput (id='fechaLanzamiento', label='Fecha lanzamiento', type='date')"></div>
 			<div
-				th:replace="_bootstrap::input ('numeroPaginas', 'Numero de páginas', 'number')">...</div>
-			<div th:replace="_bootstrap::textarea ('resumen', 'Resumen')"></div>
-			<div th:replace="_bootstrap::input ('urlImagen', 'URL imagen', 'url')"></div>
-			<div th:replace="_bootstrap::button ('Aceptar')"></div>
+				th:replace="_bootstrap::binput (id='numeroPaginas', label='Numero de páginas', type='number')">...</div>
+			<div th:replace="_bootstrap::btextarea (id='resumen', label='Resumen')"></div>
+			<div th:replace="_bootstrap::binput (id='urlImagen', label='URL imagen', type='url')"></div>
+			<div th:replace="_bootstrap::bbutton (label='Aceptar')"></div>
 		</form>
 	</section>
 </body>

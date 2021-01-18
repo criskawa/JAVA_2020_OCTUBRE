@@ -4,24 +4,28 @@
 <title></title>
 </head>
 <body>
-	<div class="form-group row" th:fragment="input (id,label,type)">
+	<div th:fragment="bhidden (id)">
+		<input type="hidden" th:field="*{__${id}__}" />
+	</div>
+	
+	<div class="form-group row" th:fragment="binput (id,label,type)">
 		<label th:for="${id}" th:text="${label}"
 			class="col-md-2 col-form-label"></label>
 		<div class="col-md-10">
 			<input th:type="${type}" class="form-control" th:id="${id}"
-				th:field="*{__${id}__}">
+				th:field="*{__${id}__}" />
 		</div>
 	</div>
-
-	<div class="form-group row" th:fragment="textarea (id,label)">
+	
+	<div class="form-group row" th:fragment="btextarea (id,label)">
 		<label th:for="${id}" th:text="${label}"
 			class="col-md-2 col-form-label"></label>
 		<div class="col-md-10">
-			<textarea class="form-control" th:id="${id}" th:field="*{__${id}__}"></textarea>
+			<textarea class="form-control" th:field="*{__${id}__}"></textarea>
 		</div>
 	</div>
 
-	<div class="form-group row" th:fragment="button (label)">
+	<div class="form-group row" th:fragment="bbutton (label)">
 		<div class="offset-md-2 col-md-10">
 			<button th:text="${label}" type="submit" class="btn btn-primary">Aceptar</button>
 		</div>

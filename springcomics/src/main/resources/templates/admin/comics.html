@@ -22,15 +22,20 @@
 					<td th:text="${comic.id}">1</td>
 					<td th:text="${comic.titulo}">Ejemplo de comic</td>
 					<td><a class="btn btn-primary"
-						th:href="@{'/admin/' + ${comic.id}}">Editar</a></td>
+						th:href="@{'/admin/' + ${comic.id}}">Editar</a>
+						<form class="d-inline" th:action="@{/admin/borrar}" method="post">
+							<input type="hidden" name="id" th:value="${comic.id}" />
+							<button class="btn btn-danger">Borrar</button>
+						</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 		<p class="col-12 text-right">
 			<a class="btn btn-primary" th:href="@{'/admin/0'}">Añadir</a>
-			<form th:action="@{/admin}" method="post">
-				<button class="btn btn-primary">Añadir</button>
-			</form>
+<!-- 			<form th:action="@{/admin}" method="post"> -->
+<!-- 				<button class="btn btn-primary">Añadir</button> -->
+<!-- 			</form> -->
 		</p>
 	</section>
 </body>
