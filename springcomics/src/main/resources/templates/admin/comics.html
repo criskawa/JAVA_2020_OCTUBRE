@@ -7,7 +7,7 @@
 <body>
 	<section class="col-12">
 		<h1>ADMINISTRACIÓN</h1>
-		
+
 
 		<table class="table table-striped table-bordered table-hover table-sm">
 			<thead class="thead-dark">
@@ -21,17 +21,17 @@
 				<tr th:each="comic: ${comics}">
 					<td th:text="${comic.id}">1</td>
 					<td th:text="${comic.titulo}">Ejemplo de comic</td>
-					<td>
-						<a class="btn btn-primary" th:href="@{'/admin/' + ${comic.id}}"
->Editar</a>
-					</td>
+					<td><a class="btn btn-primary"
+						th:href="@{'/admin/' + ${comic.id}}">Editar</a></td>
 				</tr>
 			</tbody>
 		</table>
 		<p class="col-12 text-right">
-            <a class="btn btn-primary" th:href="@{'/admin/editar/'}}"
->Añadir</a>
-        </p>
+			<a class="btn btn-primary" th:href="@{'/admin/0'}">Añadir</a>
+			<form th:action="@{/admin}" method="post">
+				<button class="btn btn-primary">Añadir</button>
+			</form>
+		</p>
 	</section>
 </body>
 </html>
