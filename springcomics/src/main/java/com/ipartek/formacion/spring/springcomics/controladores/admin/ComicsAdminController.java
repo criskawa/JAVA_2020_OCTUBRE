@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ipartek.formacion.spring.springcomics.entidades.Comic;
 import com.ipartek.formacion.spring.springcomics.entidades.Mensaje;
-import com.ipartek.formacion.spring.springcomics.repositorios.Dao;
+import com.ipartek.formacion.spring.springcomics.servicios.ComicService;
 
 import lombok.extern.java.Log;
 
@@ -20,11 +20,11 @@ import lombok.extern.java.Log;
 @RequestMapping("/admin")
 public class ComicsAdminController {
 	@Autowired
-	private Dao<Comic> dao;
-
+	private ComicService servicio;
+	
 	@GetMapping // ("/comics")
 	public String comics(Model modelo) {
-		modelo.addAttribute("comics", dao.obtenerTodos());
+		modelo.addAttribute("comics", servicio.listar());
 		return "admin/comics";
 	}
 
@@ -32,7 +32,7 @@ public class ComicsAdminController {
 	public String comic(@PathVariable Long id, Model modelo) {
 		Comic comic;
 		if (id != 0) {
-			comic = dao.obtenerPorId(id);
+			comic = servicio.obtenerPorId(id);
 		} else {
 			comic = new Comic();
 		}
@@ -49,10 +49,10 @@ public class ComicsAdminController {
 		log.info(comic.toString());
 		
 		if(comic.getId() != null) {
-			dao.editar(comic);
+			servicio.guardar(comic);
 			mensaje = new Mensaje("success", "Comic editado correctamente");
 		} else {
-			dao.insertar(comic);
+			servicio.agregar(comic);
 			mensaje = new Mensaje("success", "Comic añadido correctamente");
 		}
 		
@@ -66,7 +66,7 @@ public class ComicsAdminController {
 	public String comicPostBorrar(Long id, RedirectAttributes atributos) {
 		Mensaje mensaje;
 		
-		dao.borrar(id);
+		servicio.borrar(id);
 		
 		mensaje = new Mensaje("success", "Comic borrado correctamente");
 		

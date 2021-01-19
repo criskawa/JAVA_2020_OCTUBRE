@@ -5,17 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.ipartek.formacion.spring.springcomics.entidades.Comic;
-import com.ipartek.formacion.spring.springcomics.repositorios.Dao;
+import com.ipartek.formacion.spring.springcomics.servicios.ComicService;
 
 @Controller
 public class ComicsController {
 	@Autowired
-	private Dao<Comic> dao;
+	private ComicService servicio;
 	
 	@GetMapping("/")
 	public String comics(Model modelo) {
-		modelo.addAttribute("comics", dao.obtenerTodos());
+		modelo.addAttribute("comics", servicio.listar());
 		return "comics";
 	}
 
