@@ -7,7 +7,7 @@
 <body>
 	<section class="col-12">
 
-		<pre th:text="${comic}"></pre>
+		<!-- <pre th:text="${comic}"></pre> -->
 
 		<form th:action="@{/admin}" th:object="${comic}" method="post">
 			<div th:replace="_bootstrap::bhidden (id='id')"></div>
