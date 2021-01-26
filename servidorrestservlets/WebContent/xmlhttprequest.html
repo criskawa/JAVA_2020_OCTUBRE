@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Hola Mundo con AJAX</title>
+
+<script type="text/javascript">
+	console.log('Antes del window.onload');
+	
+	window.onload = function() {
+		console.log('window.onload');
+		
+		// Obtener la instancia del objeto XMLHttpRequest
+		if (window.XMLHttpRequest) {
+			peticion_http = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			peticion_http = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		var clientes;
+		// Preparar la funcion de respuesta
+		peticion_http.onreadystatechange = function() {
+			console.log('onreadystatechange', peticion_http.readyState, peticion_http.status);
+			
+			if (peticion_http.readyState == 4) {
+				if (peticion_http.status == 200) {
+					console.log(peticion_http.responseText);
+					clientes = JSON.parse(peticion_http.responseText);
+					console.log(clientes);
+				}
+			}
+		};
+
+		var comprobador = setInterval(function () {
+			if(clientes) {
+				console.log('Han llegado los clientes');
+				clearInterval(comprobador);
+			} else {
+				console.log('Todavía NO han llegado los clientes');
+			}
+		}, 1);
+		
+		console.log('Después del onreadystatechange');
+
+		// Realizar peticion HTTP
+		peticion_http.open('GET', '/servidorrestservlets/api/clientes', true);
+		peticion_http.send(null);
+		
+		console.log('Fin dentro de window.onload');
+
+	}
+	
+	console.log('Después de window.onload');
+</script>
+
+</head>
+<body></body>
+</html>
