@@ -4,17 +4,15 @@ window.onload = function() {
 
 	listar();
 
-	const form = document.forms[0];
-
-	form.onsubmit = function(e) {
+	$('form')[0].onsubmit = function(e) {
 		e.preventDefault();
 
-		document.getElementsByTagName('table')[0].style = "display: block";
-		document.forms[0].style = "display: none";
+		$('table')[0].style = 'display: block';
+		$('form')[0].style = 'display: none';
 
-		const id = parseInt(document.getElementById('id').value);
-		const nombre = document.getElementById('nombre').value;
-		const apellidos = document.getElementById('apellidos').value;
+		const id = parseInt($('#id').value);
+		const nombre = $('#nombre').value;
+		const apellidos = $('#apellidos').value;
 
 		const cliente = { id, nombre, apellidos };
 
@@ -27,17 +25,15 @@ window.onload = function() {
 		}
 	}
 
-	const btnInsertar = document.getElementById('a-insertar');
-
-	btnInsertar.onclick = function(e) {
+	$('#a-insertar').onclick = function(e) {
 		e.preventDefault();
 
-		document.getElementsByTagName('table')[0].style = "display: none";
-		document.forms[0].style = "display: block";
+		$('table')[0].style = "display: none";
+		$('form')[0].style = "display: block";
 
-		document.getElementById('id').value = '';
-		document.getElementById('nombre').value = '';
-		document.getElementById('apellidos').value = '';
+		$('#id').value = '';
+		$('#nombre').value = '';
+		$('#apellidos').value = '';
 	}
 };
 
@@ -47,7 +43,7 @@ async function listar() {
 
 	console.log(clientes);
 
-	const tbody = document.getElementsByTagName('tbody')[0];
+	const tbody = $('tbody')[0];
 
 	tbody.innerHTML = '';
 
@@ -67,25 +63,32 @@ async function listar() {
 		tbody.appendChild(fila);
 	});
 
-	document.forms[0].style = "display: none";
+	$('form')[0].style = 'display: none';
 }
 
 async function editar(id) {
-	const iId = document.getElementById('id');
-	const iNombre = document.getElementById('nombre');
-	const iApellidos = document.getElementById('apellidos');
-
 	const respuesta = await fetch(URL + id);
 	const cliente = await respuesta.json();
 
-	iId.value = cliente.id;
-	iNombre.value = cliente.nombre;
-	iApellidos.value = cliente.apellidos;
+	$('#id').value = cliente.id;
+	$('#nombre').value = cliente.nombre;
+	$('#apellidos').value = cliente.apellidos;
 
-	document.getElementsByTagName('table')[0].style = "display: none";
-	document.forms[0].style = "display: block";
+	$('table')[0].style = 'display: none';
+	$('form')[0].style = 'display: block';
 }
 
 function borrar(id) {
 	fetch(URL + id, { method: 'DELETE' }).then(() => listar());
 }
+
+window.$ = function(selector) {
+	var selectorType = 'querySelectorAll';
+
+	if (selector.indexOf('#') === 0) {
+		selectorType = 'getElementById';
+		selector = selector.substr(1, selector.length);
+	}
+
+	return document[selectorType](selector);
+};
