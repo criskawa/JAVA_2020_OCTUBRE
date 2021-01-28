@@ -48,6 +48,12 @@ public class ClientesApiJaxRs {
 
 	@POST
 	public Response postCliente(Cliente cliente) throws URISyntaxException {
+		if(cliente.getNombre().trim().length() == 0) {
+			TreeMap<String, String> errores = new TreeMap<>();
+			errores.put("nombre", "No puede estar vacío");
+			return Response.status(Status.BAD_REQUEST).entity(errores).build();
+		}
+		
 		cliente.setId(clientes.lastKey() + 1);
 
 		clientes.put(cliente.getId(), cliente);
