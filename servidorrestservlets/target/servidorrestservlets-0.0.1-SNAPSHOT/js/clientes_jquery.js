@@ -1,4 +1,4 @@
-const URL = '/servidorrestservlets/api/v2/clientes/';
+const URL = '/servidorrestservlets/api/clientes/';
 
 $(function() {
 
