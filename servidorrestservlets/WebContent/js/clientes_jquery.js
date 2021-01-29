@@ -7,37 +7,67 @@ $(function() {
 	$('form').on('submit', function(e) {
 		e.preventDefault();
 
-		$('table').show();
-		$('form').hide();
-
-		var id = parseInt($('#id').val());
-		var nombre = $('#nombre').val();
-		var apellidos = $('#apellidos').val();
-
-		var cliente = { id, nombre, apellidos };
-
-		console.log(cliente, typeof cliente);
-
-		if (id) {
-			$.ajax(URL + id, { method: 'PUT', data: JSON.stringify(cliente), contentType: 'application/json' }).then(listar);
-		} else {
-			$.ajax(URL, { method: 'POST', data: JSON.stringify(cliente), contentType: 'application/json' }).then(listar);
-		}
+		enviarFormulario();
 	});
 
 	$('#a-insertar').on('click', function(e) {
 		e.preventDefault();
 
-		$('table').hide();
-		$('form').show();
-
-		$('#id').val('');
-		$('#nombre').val('');
-		$('#apellidos').val('');
+		mostrarFormulario();
 	});
 });
 
-function listar() {
+function mostrarFormulario() {
+	$('table').hide();
+	$('form').show();
+
+	$('#id').val('');
+	$('#nombre').val('');
+	$('#apellidos').val('');
+}
+
+function enviarFormulario() {
+
+	var id = parseInt($('#id').val());
+	var nombre = $('#nombre').val();
+	var apellidos = $('#apellidos').val();
+
+	var cliente = { id, nombre, apellidos };
+
+	console.log(cliente, typeof cliente);
+
+	if (id) {
+		// Editar
+		$.ajax(URL + id, { method: 'PUT', data: JSON.stringify(cliente), contentType: 'application/json' }).then(
+			listar, mostrarErrores);
+	} else {
+		// Añadir
+		$.ajax(URL, { method: 'POST', data: JSON.stringify(cliente), contentType: 'application/json' }).then(
+			listar, mostrarErrores);
+	}
+}
+
+function mostrarErrores(peticion) {//( jqXHR, textStatus, errorThrown ) {
+	//console.log( jqXHR, textStatus, errorThrown );
+
+	var errores = peticion.responseJSON;
+
+	//$('#nombre ~ span').remove();
+	//$('#apellidos ~ span').remove();
+	$('span.error').remove();
+
+	if (errores.nombre) {
+		$('#nombre').after($('<span class="error">' + errores.nombre + '</span>'));
+	}
+
+	if (errores.apellidos) {
+		$('#apellidos').after($('<span class="error">' + errores.apellidos + '</span>'));
+	}
+}
+
+function listar(data, textStatus, jqXHR) {
+	console.log(data, textStatus, jqXHR);
+
 	$.getJSON(URL, function(clientes) {
 		console.log(clientes);
 
