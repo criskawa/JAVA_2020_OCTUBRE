@@ -1,3 +1,27 @@
 <ul *ngFor="let cliente of clientes">
     <li>{{cliente.nombre}}</li>
 </ul>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Fecha de nacimiento</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of clientes">
+            <th>{{cliente.id}}</th>
+            <td>{{cliente.nombre}}</td>
+            <td>{{cliente.apellidos}}</td>
+            <td>{{cliente.fechaNacimiento}}</td>
+            <td>
+                <a href="#">Editar</a>
+                <a href="#" (click)="borrar(cliente)">Borrar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

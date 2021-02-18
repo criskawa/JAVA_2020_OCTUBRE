@@ -14,8 +14,18 @@ export class ListadoComponent implements OnInit {
   constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
+    this.cargarListado();
+  }
+
+  borrar(cliente: Cliente): void {
+    if (confirm('¿Estás seguro de que quieres borrar el registro ' + cliente.id)) {
+      this.clienteService.delete(cliente.id).subscribe(this.cargarListado.bind(this))
+    }
+  }
+
+  cargarListado(): void {
     this.clienteService.get().subscribe(
-        clientesRecibidos => this.clientes = clientesRecibidos);
+      clientesRecibidos => this.clientes = clientesRecibidos);
   }
 
 }
