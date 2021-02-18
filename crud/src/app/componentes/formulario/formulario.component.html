@@ -1,0 +1,7 @@
+<form>
+    <input #nombre placeholder="Nombre" />
+    <input #apellidos placeholder="Apellidos" />
+    <input #fechaNacimiento type="date" placeholder="Fecha de nacimiento" />
+    <button type="button" (click)="btnAceptar(0, nombre.value, apellidos.value, fechaNacimiento.value)">Aceptar</button>
+    <button type="button" (click)="location.back()">Cancelar</button>
+</form>
