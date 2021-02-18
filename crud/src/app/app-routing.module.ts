@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/listado', pathMatch: 'full' },
   { path: 'listado', component: ListadoComponent },
   { path: 'formulario', component: FormularioComponent },
+  { path: 'formulario/:id', component: FormularioComponent },
 ];
 
 @NgModule({

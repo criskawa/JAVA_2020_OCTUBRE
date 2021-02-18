@@ -19,7 +19,7 @@
             <td>{{cliente.apellidos}}</td>
             <td>{{cliente.fechaNacimiento}}</td>
             <td>
-                <a href="#">Editar</a>
+                <a routerLink="/formulario/{{cliente.id}}">Editar</a>
                 <a href="#" (click)="borrar(cliente)">Borrar</a>
             </td>
         </tr>
