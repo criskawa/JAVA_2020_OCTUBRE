@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cliente } from 'src/app/modelos/cliente';
+import { Cliente, CLIENTE_VACIO } from 'src/app/modelos/cliente';
 import { ClienteService } from 'src/app/servicios/cliente.service';
 
 @Component({
@@ -11,12 +11,7 @@ import { ClienteService } from 'src/app/servicios/cliente.service';
 })
 export class FormularioComponent implements OnInit, OnDestroy {
 
-  cliente: Cliente = {
-    id: 0,
-    nombre: '',
-    apellidos: '',
-    fechaNacimiento: '',
-  };
+  cliente: Cliente = CLIENTE_VACIO;
 
   id: number;
 
