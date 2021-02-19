@@ -1,7 +1,3 @@
-<ul *ngFor="let cliente of clientes">
-    <li>{{cliente.nombre}}</li>
-</ul>
-
 <table>
     <thead>
         <tr>
@@ -19,8 +15,8 @@
             <td>{{cliente.apellidos}}</td>
             <td>{{cliente.fechaNacimiento}}</td>
             <td>
-                <a routerLink="/formulario/{{cliente.id}}">Editar</a>
-                <a href="#" (click)="borrar(cliente)">Borrar</a>
+                <button routerLink="/formulario/{{cliente.id}}">Editar</button>
+                <button (click)="borrar(cliente)">Borrar</button>
             </td>
         </tr>
     </tbody>
