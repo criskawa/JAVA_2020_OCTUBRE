@@ -1,7 +1,9 @@
 <form>
-    <input #nombre placeholder="Nombre" />
-    <input #apellidos placeholder="Apellidos" />
-    <input #fechaNacimiento type="date" placeholder="Fecha de nacimiento" />
-    <button type="button" (click)="btnAceptar(0, nombre.value, apellidos.value, fechaNacimiento.value)">Aceptar</button>
-    <button type="button" (click)="location.back()">Cancelar</button>
+    <input [(ngModel)]="cliente.nombre" placeholder="Nombre" name="nombre" />
+    <input [(ngModel)]="cliente.apellidos" placeholder="Apellidos" name="apellidos" />
+    <input [(ngModel)]="cliente.fechaNacimiento" type="date" placeholder="Fecha de nacimiento" name="fecha-nacimiento" />
+    <button type="button" (click)="btnAceptar()">Aceptar</button>
+    <button type="button" routerLink="/listado">Cancelar</button>
 </form>
+
+<a routerLink="/formulario/1">Primer registro</a>

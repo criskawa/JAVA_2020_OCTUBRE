@@ -29,7 +29,8 @@ export class ClienteService {
   }
 
   put(cliente: Cliente) : Observable<Cliente> {
-    return this.http.put<Cliente>(this.url, cliente, this.httpOptions);
+    console.log(this);
+    return this.http.put<Cliente>(this.url + cliente.id, cliente, this.httpOptions);
   }
 
   delete(id: number) : Observable<Cliente> {
