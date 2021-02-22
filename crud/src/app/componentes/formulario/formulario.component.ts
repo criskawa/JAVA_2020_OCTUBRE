@@ -39,10 +39,15 @@ export class FormularioComponent implements OnInit, OnDestroy {
     console.log('Destruyendo formulario');
   }
 
-  btnAceptar(): void {
+  btnAceptar(formulario: HTMLFormElement): void {
     //const ajax = this.id ? this.clienteService.put : this.clienteService.post;
 
     console.log(this.id, this.cliente);
+
+    if(!formulario.checkValidity()) {
+      formulario.classList.add('was-validated');
+      return;
+    }
 
     if (this.id) {
       this.clienteService.put(this.cliente).subscribe(this.irAListado.bind(this));
