@@ -11,6 +11,8 @@ import { ClienteService } from 'src/app/servicios/cliente.service';
 })
 export class FormularioComponent implements OnInit, OnDestroy {
 
+  validado: boolean = false;
+
   cliente: Cliente = CLIENTE_VACIO;
 
   id: number;
@@ -39,13 +41,14 @@ export class FormularioComponent implements OnInit, OnDestroy {
     console.log('Destruyendo formulario');
   }
 
-  btnAceptar(formulario: HTMLFormElement): void {
+  btnAceptar(esValido: boolean): void {
     //const ajax = this.id ? this.clienteService.put : this.clienteService.post;
 
     console.log(this.id, this.cliente);
+    
+    this.validado = true;
 
-    if(!formulario.checkValidity()) {
-      formulario.classList.add('was-validated');
+    if(!esValido) {
       return;
     }
 
