@@ -15,7 +15,9 @@ import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name="categorias")
@@ -40,6 +42,8 @@ public class Categoria {
 	@Column(columnDefinition = "BOOLEAN DEFAULT TRUE")
 	private boolean activado = true;
 	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy = "categoria")
 	private Set<Producto> productos;
 }
