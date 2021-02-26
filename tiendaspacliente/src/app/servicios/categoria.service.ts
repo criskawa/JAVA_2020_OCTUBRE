@@ -15,6 +15,7 @@ export class CategoriaService {
 
   public obtenerCategorias(): Observable<Categoria[]> {
     return this.http.get<any>(this.url).pipe(
+      //tap(datos => console.log(datos)),
       map(datos => datos._embedded.categorias)
     );
   }
