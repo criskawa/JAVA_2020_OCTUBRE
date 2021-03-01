@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.ipartek.formacion.spring.tiendaspa.entidades.Categoria;
 
 @CrossOrigin(origins = "*")
-@RepositoryRestResource(collectionResourceRel = "categorias", path = "categorias", excerptProjection = CategoriaProjection.class)
+@RepositoryRestResource(collectionResourceRel = "categorias", path = "categorias")
 public interface CategoriaRepository extends PagingAndSortingRepository<Categoria, Long> {
 
 }

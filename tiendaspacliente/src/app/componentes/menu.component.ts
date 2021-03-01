@@ -7,7 +7,7 @@ import { CategoriaService } from "../servicios/categoria.service";
     selector: 'app-menu',
     template: `
         <ul *ngFor="let categoria of categorias$ | async">
-            <li>{{categoria.nombre}}: {{categoria.descripcion}}</li>
+            <li><a routerLink="/categorias/{{categoria.id}}">{{categoria.nombre}}: {{categoria.descripcion}}</a></li>
         </ul>
         `,
     styles: [ 'ul { background: lightgray }' ]

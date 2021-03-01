@@ -1,4 +1,4 @@
-package com.ipartek.formacion.spring.tiendaspa.repositorios;
+package com.ipartek.formacion.spring.tiendaspa.entidades;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -6,11 +6,8 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-import com.ipartek.formacion.spring.tiendaspa.entidades.Categoria;
-import com.ipartek.formacion.spring.tiendaspa.entidades.Producto;
-
-@Projection(name = "producto", types = { Producto.class })
-public interface ProductoProjection {
+@Projection(name = "productoConCategoria", types = { Producto.class })
+public interface ProductoConCategoriaProjection {
 	Long getId();
 	String getNombre();
 	String getDescripcion();

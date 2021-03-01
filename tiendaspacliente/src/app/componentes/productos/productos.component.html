@@ -1,0 +1,26 @@
+<table>
+    <caption>Listado de productos</caption>
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Fecha de caducidad</th>
+            <th scope="col">Categoría</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let producto of productos">
+            <th scope="row">{{producto.id}}</th>
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.descripcion}}</td>
+            <td>{{producto.precio}}</td>
+            <td>{{producto.fechaCaducidad}}</td>
+            <td>{{producto.categoria.nombre}}</td>
+        </tr>
+        <tr *ngIf="productos.length === 0">
+            <td colspan="5">No hay productos</td>
+        </tr>
+    </tbody>
+</table>
