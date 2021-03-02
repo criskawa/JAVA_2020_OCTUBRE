@@ -12,7 +12,7 @@ import com.ipartek.formacion.spring.tiendaspa.entidades.Producto;
 @CrossOrigin(origins = "*")
 // excerptProjection = ProductoProjection.class
 // Activa la visualización de los elementos de tipo producto a través de la proyección pero sólo en las colecciones no individualmente
-// Para la visualización de un elemento individual necesitamos ADEMÁS del excerpt, añadir ?projection=productoProjection a la petición individual
+// Para la visualización de un elemento individual necesitamos añadir ?projection=nameDeLaProyeccion a la petición individual
 @RepositoryRestResource(collectionResourceRel = "productos", path = "productos")
 public interface ProductoRepository extends PagingAndSortingRepository<Producto, Long>{
     @Query("SELECT p FROM Producto p WHERE p.categoria.id = :id")
