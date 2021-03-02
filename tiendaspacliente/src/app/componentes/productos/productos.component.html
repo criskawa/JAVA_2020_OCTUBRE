@@ -3,7 +3,7 @@
     <thead>
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
+            <th scope="col">Nombre<br /><input [(ngModel)]="nombre" (input)="buscarPorNombre()" placeholder="Busca por nombre"/></th>
             <th scope="col">Descripción</th>
             <th scope="col">Precio</th>
             <th scope="col">Fecha de caducidad</th>

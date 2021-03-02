@@ -9,6 +9,8 @@ import { ProductoService } from 'src/app/servicios/producto.service';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
+  nombre: string;
+  
   productos: Producto[] = [];
 
   constructor(
@@ -21,6 +23,10 @@ export class ProductosComponent implements OnInit {
       const id:number = +param.get('id');
       this.productoService.obtenerPorIdCategoria(id).subscribe(productos => this.productos = productos);
     });
+  }
+
+  buscarPorNombre() {
+    this.productoService.obtenerPorNombre(this.nombre).subscribe(productos => this.productos = productos);
   }
 
 }

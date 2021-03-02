@@ -5,6 +5,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.ipartek.formacion.spring.tiendaspa.entidades.Producto;
@@ -15,6 +16,10 @@ import com.ipartek.formacion.spring.tiendaspa.entidades.Producto;
 // Para la visualización de un elemento individual necesitamos añadir ?projection=nameDeLaProyeccion a la petición individual
 @RepositoryRestResource(collectionResourceRel = "productos", path = "productos")
 public interface ProductoRepository extends PagingAndSortingRepository<Producto, Long>{
+    // Podríamos haber utilizado directamente la ruta /api/categorias/1/productos
     @Query("SELECT p FROM Producto p WHERE p.categoria.id = :id")
     List<Producto> findByCategoriaId(Long id);
+
+    List<Producto> findByNombreContaining(String nombre);
+    List<Producto> findByPrecioGreaterThanEqual(BigDecimal importe);
 }

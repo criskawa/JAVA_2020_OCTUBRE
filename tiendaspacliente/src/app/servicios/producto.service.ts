@@ -18,4 +18,10 @@ export class ProductoService {
       map(datos => datos._embedded.productos)
     );
   }
+
+  obtenerPorNombre(nombre: string) : Observable<Producto[]> {
+    return this.http.get<any>(`${this.url}search/findByNombreContaining?nombre=${nombre}&projection=productoConCategoria`).pipe(
+      map(datos => datos._embedded.productos)
+    );
+  }
 }

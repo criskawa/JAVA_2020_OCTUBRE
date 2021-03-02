@@ -7,6 +7,7 @@ import { MenuComponent } from './componentes/menu.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ProductosComponent } from './componentes/productos/productos.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ProductosComponent } from './componentes/productos/productos.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
