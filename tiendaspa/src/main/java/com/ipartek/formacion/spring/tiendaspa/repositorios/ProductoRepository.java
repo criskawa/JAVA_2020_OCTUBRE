@@ -22,4 +22,7 @@ public interface ProductoRepository extends PagingAndSortingRepository<Producto,
 
     List<Producto> findByNombreContaining(String nombre);
     List<Producto> findByPrecioGreaterThanEqual(BigDecimal importe);
+
+    @Query("SELECT p FROM Producto p WHERE p.categoria.id = :id AND p.nombre LIKE %:nombre%")
+    List<Producto> findByNombreYCategoria(String nombre, Long id);
 }
