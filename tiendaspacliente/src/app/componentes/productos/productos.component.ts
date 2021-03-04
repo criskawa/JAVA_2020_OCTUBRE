@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { Categoria } from 'src/app/modelos/categoria';
 import { Producto } from 'src/app/modelos/producto';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
@@ -18,6 +19,8 @@ export class ProductosComponent implements OnInit {
   categorias: Categoria[] = [];
   productos: Producto[] = [];
 
+  private sujeto = new Subject<void>(); // Escuchador y generador de eventos string
+
   constructor(
     private productoService: ProductoService,
     private categoriaService: CategoriaService,
@@ -31,22 +34,34 @@ export class ProductosComponent implements OnInit {
       const id:number = +param.get('id');
       this.productoService.obtenerPorIdCategoria(id).subscribe(productos => this.productos = productos);
     });
+
+    this.sujeto.pipe(
+      debounceTime(300),
+      tap(dato => console.log(dato)),
+      //distinctUntilChanged(),
+      switchMap(
+        //(nombre: string) 
+        () => this.obtenerProductos() //this.productoService.obtenerPorNombre(nombre)
+      ),
+      tap(dato => console.log(dato)),
+    ).subscribe(productos => this.productos = productos);
   }
 
   buscarPorNombreYCategoria() {
-    let productos$: Observable<Producto[]>;
+    this.sujeto.next();//this.nombre);
+  }
+
+  obtenerProductos(): Observable<Producto[]> {
     
     if(this.categoria && this.nombre) {
-      productos$ = this.productoService.obtenerPorNombreYCategoria(this.nombre, this.categoria);
+      return this.productoService.obtenerPorNombreYCategoria(this.nombre, this.categoria);
     } else if(this.categoria && !this.nombre) {
-      productos$ = this.productoService.obtenerPorIdCategoria(this.categoria);
+      return this.productoService.obtenerPorIdCategoria(this.categoria);
     } else if(!this.categoria && this.nombre) {
-      productos$ = this.productoService.obtenerPorNombre(this.nombre);
+      return this.productoService.obtenerPorNombre(this.nombre);
     } else {
-      productos$ = this.productoService.obtenerTodos();
+      return this.productoService.obtenerTodos();
     }
-    
-    productos$.subscribe(productos => this.productos = productos);
   }
 
 }
