@@ -1,0 +1,8 @@
+<input [(ngModel)] = "valor" />
+<h1>Mi hijo me ha dicho {{valorHijo}}</h1>
+
+<h1>Hijo {{hijo.valorHijo}}</h1>
+
+<hr />
+
+<app-hijo #hijo [valor]="valor" (textoCambiado)="textoCambiado($event)"></app-hijo>
